@@ -3,7 +3,7 @@
 #include <compare>
 struct ActorManagerSettings
 {
-	ActorManagerSettings(int gcDelay = 5, float deadZoneX = 2000, float deadZoneY = 2000) : gcDelay{ gcDelay }, deadZoneX{ deadZoneX }, deadZoneY{ deadZoneY } {};
+	ActorManagerSettings(int gcDelay = 100, float deadZoneX = 2000, float deadZoneY = 2000) : gcDelay{ gcDelay }, deadZoneX{ deadZoneX }, deadZoneY{ deadZoneY } {};
 
 	auto operator<=>(const ActorManagerSettings&)const = default;
 

@@ -5,11 +5,11 @@
 class LoopingThread
 {
 public:
+	virtual ~LoopingThread();
 	virtual void Run() = 0;
 	void Wait();
 	void Start();
 	void Terminate();
-	virtual ~LoopingThread() = default;
 private:
 	void Runner();
 protected:

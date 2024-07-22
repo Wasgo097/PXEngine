@@ -134,8 +134,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Objects\Components\AnimationComponent.h" />
+    <ClInclude Include="Objects\Components\ColliderComponent.h" />
     <ClInclude Include="Core\ActorManager.h" />
-    <ClInclude Include="Objects\ActorComponent.h" />
+    <ClInclude Include="Objects\Components\ActorComponent.h" />
     <ClInclude Include="Objects\Actor.h" />
     <ClInclude Include="Objects\AnimatedActor.h" />
     <ClInclude Include="Objects\ControlledActor.h" />
@@ -143,6 +145,7 @@
     <ClInclude Include="Core\EngineBase.h" />
     <ClInclude Include="Core\InputManager.h" />
     <ClInclude Include="Settings\ActorSettings.h" />
+    <ClInclude Include="Settings\AnimationSettings.h" />
     <ClInclude Include="Settings\SettingsSerializer.h" />
     <ClInclude Include="Settings\BasicSFMLTypesToJson.h" />
     <ClInclude Include="Settings\json.hpp" />
@@ -159,8 +162,10 @@
     <ClInclude Include="Core\WorldBaseComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Objects\Components\AnimationComponent.cpp" />
+    <ClCompile Include="Objects\Components\ColliderComponent.cpp" />
     <ClCompile Include="Core\ActorManager.cpp" />
-    <ClCompile Include="Objects\ActorComponent.cpp" />
+    <ClCompile Include="Objects\Components\ActorComponent.cpp" />
     <ClCompile Include="Objects\Actor.cpp" />
     <ClCompile Include="Objects\AnimatedActor.cpp" />
     <ClCompile Include="Objects\ControlledActor.cpp" />

@@ -72,7 +72,7 @@
     <ClInclude Include="Objects\ControlledActor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\ActorComponent.h">
+    <ClInclude Include="Objects\Components\ActorComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\WorldBaseComponent.h">
@@ -85,6 +85,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\ActorManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Components\ColliderComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects\Components\AnimationComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings\AnimationSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -122,13 +131,19 @@
     <ClCompile Include="Objects\ControlledActor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Objects\ActorComponent.cpp">
+    <ClCompile Include="Objects\Components\ActorComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\WorldBaseComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\ActorManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Components\ColliderComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects\Components\AnimationComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,9 +1,12 @@
 #pragma once
-#include "ActorComponent.h"
+#include "Components/ActorComponent.h"
+#include "Components/AnimationComponent.h"
+#include "Components/ColliderComponent.h"
 #include "Settings/ActorSettings.h"
 #include "Settings/TextureSettings.h"
 #include <list>
 #include <memory>
+#include <optional>
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
@@ -12,10 +15,10 @@ class WorldBase;
 class Actor
 {
 public:
-	Actor(WorldBase* parent = nullptr, ActorSettings actorSettings=ActorSettings(), TextureSettings textureSettings=TextureSettings());
+	Actor(WorldBase* parent = nullptr, ActorSettings actorSettings = ActorSettings(), TextureSettings textureSettings = TextureSettings());
 	Actor(const Actor&) = delete;
 	Actor& operator=(const Actor&) = delete;
-	Actor(Actor&&) = delete;;
+	Actor(Actor&&) = delete;
 	Actor& operator=(Actor&&) = delete;
 	virtual ~Actor() = default;
 	virtual std::string ToString()const;
@@ -30,16 +33,19 @@ public:
 	virtual void Draw(sf::RenderWindow& window);
 	void Destroy();
 	bool ToDestroy() const;
+	sf::Vector2f GetPosition()const;
+	bool CanCollide()const;
 protected:
 	template<typename T>
 		requires std::derived_from<T, ActorComponent>
-	std::weak_ptr<T> GetTComponent()const
+	std::weak_ptr<T> GetActorComponent()const
 	{
 		for (const auto& component : _actorComponents)
 			if (auto castedComponent = std::dynamic_pointer_cast<T>(component))
 				return castedComponent;
 		return {};
 	}
+	std::weak_ptr<ColliderComponent> GetColliderComponent()const;
 	WorldBase* _parent;
 	ActorSettings _actorSettings;
 	TextureSettings _textureSettings;
@@ -48,7 +54,8 @@ protected:
 	sf::Vector2f _velocity;
 	bool _pushed{ false };
 private:
-	virtual void CreateActorComponents() = 0;
+	virtual void CreateActorComponents();
+	void ChangePosition(sf::Vector2f velocity);
 	std::list<std::shared_ptr<ActorComponent>> _actorComponents;
 	bool _destroy{ false };
 };

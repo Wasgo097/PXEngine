@@ -1,5 +1,11 @@
 #include "LoopingThread.h"
 
+LoopingThread::~LoopingThread()
+{
+	Terminate();
+	Wait();
+}
+
 void LoopingThread::Wait()
 {
 	if (!_thr)
@@ -20,5 +26,6 @@ void LoopingThread::Terminate()
 
 void LoopingThread::Runner()
 {
-	Run();
+	while (!_thrFlag)
+		Run();
 }

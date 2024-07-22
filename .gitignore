@@ -1,5 +1,8 @@
 ﻿/.vs/PXEngine
 /packages
 /x64/Debug
+/x64/Release
 /PXEngineCore/x64/Debug
 /PXEngine/x64/Debug
+/PXEngine/x64/Release
+/PXEngineCore/x64/Release

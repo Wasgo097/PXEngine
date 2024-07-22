@@ -21,10 +21,11 @@ public:
 	virtual void EndWorld();
 	void Draw(sf::RenderWindow& window);
 	void Update(double delta);
-	bool Quit();
+	virtual bool Quit() = 0;
 	template<typename TypeToCreate, typename ...Argv>
 		requires std::derived_from<TypeToCreate, Actor>
-	std::weak_ptr<TypeToCreate> SpawnActor(const ActorSettings& actorSettings, const TextureSettings& textureSettings, Argv && ...argv) {
+	std::weak_ptr<TypeToCreate> SpawnActor(const ActorSettings& actorSettings, const TextureSettings& textureSettings, Argv && ...argv) 
+	{
 		std::shared_ptr<TypeToCreate> result{ std::make_shared<TypeToCreate>(this, actorSettings, textureSettings, std::forward<Argv>(argv)...) };
 		_actorManager.RegistrNewActor(result);
 		result->OnSpawn();
@@ -32,10 +33,11 @@ public:
 			_onActorSpawn(result);
 		return result;
 	}
+	void OnActorDelete();
 protected:
 	template<typename T>
 		requires std::derived_from<T, WorldBaseComponent>
-	std::weak_ptr<T> GetTComponent()const
+	std::weak_ptr<T> GetWorldBaseComponent()const
 	{
 		for (const auto& component : _worldBaseComponents)
 			if (auto castedComponent = std::dynamic_pointer_cast<T>(component))
@@ -45,7 +47,9 @@ protected:
 	EngineBase* _parent;
 private:
 	virtual void CreateWorldBaseComponents() = 0;
+	virtual void InitCallbacks() = 0;
 	std::function<void(const std::weak_ptr<Actor>&)> _onActorSpawn;
+	std::function<void()> _onActorDelete;
 	std::list<std::shared_ptr<WorldBaseComponent>> _worldBaseComponents;
 	ActorManager _actorManager;
 };
